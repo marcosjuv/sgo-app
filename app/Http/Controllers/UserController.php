@@ -21,7 +21,8 @@ class UserController extends Controller
             return response()->json(['mensaje' => 'Correo ya esta registrado'], 403);
         }else {
             $resp = new UserResource(User::create($request->all()));
-            return response()->json(['mensaje' => 'Usuario creado'], 200);
+            return response()->json([
+                'mensaje' => 'Usuario creado'], 201);
         }
     }
 

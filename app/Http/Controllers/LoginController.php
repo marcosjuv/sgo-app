@@ -15,10 +15,12 @@ class LoginController extends Controller
             $token = $user->createToken('login');
 
             return[
-                'token' => $token->plainTextToken
+                'token' => $token->plainTextToken,
             ];
         }
 
-        return response()->json(['mensaje' => 'Credenciales invalidas'], 401);
+        return response()->json([
+            'mensaje' => 'Credenciales invalidas'
+        ], 401);
     }
 }
