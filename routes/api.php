@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\OperationController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['prefix' => 'sgo-app', 'namespace'=>'App\Http\Controllers'],function () {
     Route::apiResource('clients', ClientController::class);
     Route::apiResource('operations', OperationController::class);
+    Route::apiResource('listusers', UserController::class);
+    Route::apiResource('createuser', UserController::class);
 });
