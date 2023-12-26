@@ -10,8 +10,9 @@ use App\Http\Resources\UserResource;
 class UserController extends Controller
 {
     function index(Request $request) {
-        $user = User::paginate();
-        return new UserCollection($user);
+        // $user = User::paginate();
+        // return new UserCollection($user);
+        return User::paginate();
     }
 
     public function Store(Request $request)
