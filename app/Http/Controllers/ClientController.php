@@ -9,9 +9,8 @@ use App\Http\Resources\ClientResource;
 
 class ClientController extends Controller
 {
-    public function index(){
-        $clientes = Client::paginate();
-        return new ClientCollection($clientes);
+    public function index(){        
+        return Client::paginate();
     }
 
 
