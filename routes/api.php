@@ -21,12 +21,12 @@ use App\Http\Controllers\User;
 
 
 
-    // Route::post('login', [LoginController::class, 'login']);
+    Route::post('login', [LoginController::class, 'login']);
 
     Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         return $request->user();
     });
-    // Route::post('createuser', '/user', 'store');
+    Route::post('createuser', [UserController::class, 'store']);
 
     // Route::middleware('auth:sanctum')->group(['namespace' => 'App\Http\Controllers'],function () {
     Route::middleware('auth:sanctum')->group(function () {
