@@ -11,6 +11,37 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::create('documents', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
+
+        Schema::create('operation_types', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->boolean('active');
+            $table->timestamps();
+        });
+
+        Schema::create('offices', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('comment');
+            $table->boolean('active');
+            $table->timestamps();
+        });
+
+        Schema::create('warehouses', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('address');
+            $table->string('phone_number');
+            $table->string('comment');
+            $table->boolean('active');
+            $table->timestamps();
+        });
+
         Schema::create('operations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('client_id');
@@ -63,11 +94,11 @@ return new class extends Migration
             $table->integer('comment')->nullable();
             $table->timestamps();
 
+            $table->foreign('operation_type_id')->references('id')->on('operation_types')->onUpdate('cascade')->onDelete('cascade')->constrained();
+            $table->foreign('office_id')->references('id')->on('offices')->onUpdate('cascade')->onDelete('cascade')->constrained();
+            $table->foreign('custom_id')->references('id')->on('customs')->onUpdate('cascade')->onDelete('cascade')->constrained();
+            $table->foreign('document_id')->references('id')->on('documents')->onUpdate('cascade')->onDelete('cascade')->constrained();
             $table->foreign('client_id')->references('id')->on('clients')->onUpdate('cascade')->onDelete('cascade')->constrained();
-            $table->foreign('operation_type_id')->references('id')->on('operation_types')->unsigned();
-            $table->foreign('office_id')->references('id')->on('office')->onUpdate('cascade')->onDelete('cascade')->constrained();
-            $table->foreign('custom_id')->references('id')->on('custom')->onUpdate('cascade')->onDelete('cascade')->constrained();
-            $table->foreign('document_id')->references('id')->on('document')->onUpdate('cascade')->onDelete('cascade')->constrained();
         });
     }
 

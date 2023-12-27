@@ -18,6 +18,27 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('14278228')
         ]);
 
+        \App\Models\Custom::factory()->create([
+            'name' => 'MARITIMA - MARACAIBO',
+            'observation' => '',
+            'active' => 1,
+            'name' => 'AEREA - LA CHINITA',
+            'observation' => '',
+            'active' =>1,
+            'name' => 'TERRESTRE - SAN ANTONIO',
+            'observation' => '',
+            'active' => 1,
+            'name' => 'MARITIMA - PTO. CABELLO',
+            'observation' => '',
+            'active' => 0,
+            'name' => 'TERRESTRE - PARAGUACHON',
+            'observation' => '',
+            'active' => 0,
+            'name' => 'TERRESTRE -  UREÑA',
+            'observation' => '',
+            'active' => 1,
+        ]);
+
         // DB::table('users')->insert([
         //     'name' => Str::random(10),
         //     'rif' => Str::random(10),

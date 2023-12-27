@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('warehouses', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('address');
-            $table->string('phone_number');
-            $table->string('comment');
-            $table->boolean('active');
-            $table->timestamps();
-        });
+        // Schema::create('warehouses', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('name');
+        //     $table->string('address');
+        //     $table->string('phone_number');
+        //     $table->string('comment');
+        //     $table->boolean('active');
+        //     $table->timestamps();
+        // });
     }
 
     /**
