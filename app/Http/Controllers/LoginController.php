@@ -23,11 +23,5 @@ class LoginController extends Controller
         return response()->json([
             'mensaje' => 'Credenciales invalidas'
         ], 401);
-    }
-
-    public function getToken()
-    {
-        $token = DB::table('users')->join('personal_access_tokens','users.id','=','tokenable_id')->select('token')->first();
-        return $token;
-    }
+    }   
 }
