@@ -4,7 +4,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\OperationController;
-// use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\User;
 
@@ -20,10 +19,15 @@ use App\Http\Controllers\User;
 */
     Route::post('login', [LoginController::class, 'login']);
     Route::post('createuser', [UserController::class, 'store']);
-    Route::get('clients', [ClientController::class, 'index']);
+
     Route::get('operations', [OperationController::class, 'index']);
     Route::get('listusers', [UserController::class, 'index']);
 
     Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         return $request->user();
     });
+
+        Route::get('clients', [ClientController::class, 'index']);
+        Route::get('getid/{id}', [ClientController::class, 'getClientById']);
+        Route::get('name/{name}', [ClientController::class, 'getClientByName']);
+    

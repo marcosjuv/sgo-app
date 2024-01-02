@@ -24,4 +24,17 @@ class ClientController extends Controller
     {
         return $client->update($request->all());
     }
+
+    public function getClientById(Request $request, $id)
+    {
+        $client = Client::find($id);
+        return response()->json($client);
+    } 
+
+    public function getClientByName($name)
+    {
+        $client = Client::where('name','ILIKE','%' . $name . '%');
+        // return new ClientResource($client);
+        return $client;
+    }
 }
