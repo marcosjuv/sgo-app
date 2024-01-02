@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Client;
 use App\Http\Resources\ClientCollection;
 use App\Http\Resources\ClientResource;
+use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
 {
@@ -31,10 +32,13 @@ class ClientController extends Controller
         return response()->json($client);
     } 
 
-    public function getClientByName($name)
+    public function getClientByName($name = "colombina")
     {
-        $client = Client::where('name','ILIKE','%' . $name . '%');
+        $client = DB::table('clients')->where('name','LIKE',"%".$name."%")->get();
+        // $client = Client::where('name','LIKE',"%".$name."%");
         // return new ClientResource($client);
-        return $client;
+        // dd($client);
+        // return $client;
+        return response()->json($client);
     }
 }
