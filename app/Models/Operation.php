@@ -15,7 +15,11 @@ class Operation extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function client(){
-        return $this->belongsTo(Client::class);
+    public function operationstype(){
+        return $this->belongsTo(OperationType::class);
+    }
+
+    public function office(){
+        return $this->belongsTo(Office::class);
     }
 }
