@@ -7,6 +7,7 @@ use App\Http\Controllers\OperationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OperationTypeController;
 use App\Http\Controllers\OfficeController;
+use App\Http\Controllers\CustomController;
 use App\Http\Controllers\User;
 
 /*
@@ -32,6 +33,7 @@ use App\Http\Controllers\User;
         Route::get('clients', [ClientController::class, 'index']);
         Route::get('operationstype', [OperationTypeController::class, 'index']);
         Route::get('sucursal', [OfficeController::class, 'index']);
+        Route::get('aduana', [CustomController::class, 'index']);
         Route::get('getid/{id}', [ClientController::class, 'getClientById']);
         Route::get('name/{name}', [ClientController::class, 'getClientByName']);
     

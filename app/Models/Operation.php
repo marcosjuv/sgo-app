@@ -22,4 +22,8 @@ class Operation extends Model
     public function office(){
         return $this->belongsTo(Office::class);
     }
+
+    public function custom(){
+        return $this->belongsTo(Custom::class);
+    }
 }
