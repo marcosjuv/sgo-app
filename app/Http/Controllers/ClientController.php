@@ -37,8 +37,6 @@ class ClientController extends Controller
         if ($name = '') {
             return response()->json(['mensaje' => 'No se encontraron registros'], 404);
         }
-
-        // $client = Client::where('name','like','%'.$name.'%')->paginate(15);
         $client = DB::table('clients')->where('name','LIKE','%' .$request->name. '%')->paginate(15);        
         return response()->json([$client]);
     }
