@@ -20,20 +20,53 @@ use App\Http\Controllers\User;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-    Route::post('login', [LoginController::class, 'login']);
-    Route::post('createuser', [UserController::class, 'store']);
-
-    Route::get('operations', [OperationController::class, 'index']);
-    Route::get('listusers', [UserController::class, 'index']);
 
     Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         return $request->user();
     });
 
-        Route::get('clients', [ClientController::class, 'index']);
-        Route::get('operationstype', [OperationTypeController::class, 'index']);
-        Route::get('sucursal', [OfficeController::class, 'index']);
-        Route::get('aduana', [CustomController::class, 'index']);
-        Route::get('getid/{id}', [ClientController::class, 'getClientById']);
-        Route::get('name/{name}', [ClientController::class, 'getClientByName']);
-    
+/*
+|--------------------------------------------------------------------------
+| API Routes login
+|--------------------------------------------------------------------------
+*/
+    Route::post('login', [LoginController::class, 'login']);
+/*
+|--------------------------------------------------------------------------
+| API Routes usuario
+|--------------------------------------------------------------------------
+*/
+    Route::post('createuser', [UserController::class, 'store']);
+    Route::get('listusers', [UserController::class, 'index']);
+/*
+|--------------------------------------------------------------------------
+| API Routes operaciones
+|--------------------------------------------------------------------------
+*/
+    Route::post('operaciones', [OperationController::class, 'store']);
+/*
+|--------------------------------------------------------------------------
+| API Routes Tipo de operaciones
+|--------------------------------------------------------------------------
+*/
+    Route::get('operationstype', [OperationTypeController::class, 'index']);
+/*
+|--------------------------------------------------------------------------
+| API Routes aduanas
+|--------------------------------------------------------------------------
+*/
+    Route::get('aduana', [CustomController::class, 'index']);
+/*
+|--------------------------------------------------------------------------
+| API Routes clientes
+|--------------------------------------------------------------------------
+*/
+    Route::get('clients', [ClientController::class, 'index']);
+    Route::get('getid/{id}', [ClientController::class, 'getClientById']);
+    Route::get('name/{name}', [ClientController::class, 'getClientByName']);
+/*
+|--------------------------------------------------------------------------
+| API Routes sucursales
+|--------------------------------------------------------------------------
+*/
+    Route::get('sucursal', [OfficeController::class, 'index']);

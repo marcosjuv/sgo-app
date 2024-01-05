@@ -48,9 +48,9 @@ return new class extends Migration
             $table->foreignId('operation_type_id');
             $table->foreignId('office_id');
             $table->foreignId('custom_id');
-            $table->foreignId('document_id');
-            $table->integer('file');
-            $table->string('bill')->nullable();
+            $table->string('document')->nullable();
+            $table->integer('file')->nullable();
+            $table->string('bill');
             $table->string('merchandise_description')->nullable();
             $table->string('dispatcher')->nullable();
             $table->string('merchandise_origin')->nullable();
@@ -88,7 +88,7 @@ return new class extends Migration
             $table->double('seniat_tax', 8, 2)->nullable();
             $table->double('treasury_tax', 8, 2)->nullable();
             $table->double('customer_deposit', 8, 2)->nullable();
-            $table->integer('status');
+            $table->integer('status')->default('1');
             $table->string('process_color')->nullable();
             $table->string('shipping_guide')->nullable();
             $table->integer('comment')->nullable();
@@ -97,7 +97,6 @@ return new class extends Migration
             $table->foreign('operation_type_id')->references('id')->on('operation_types')->onUpdate('cascade')->onDelete('cascade')->constrained();
             $table->foreign('office_id')->references('id')->on('offices')->onUpdate('cascade')->onDelete('cascade')->constrained();
             $table->foreign('custom_id')->references('id')->on('customs')->onUpdate('cascade')->onDelete('cascade')->constrained();
-            $table->foreign('document_id')->references('id')->on('documents')->onUpdate('cascade')->onDelete('cascade')->constrained();
             $table->foreign('client_id')->references('id')->on('clients')->onUpdate('cascade')->onDelete('cascade')->constrained();
         });
     }
