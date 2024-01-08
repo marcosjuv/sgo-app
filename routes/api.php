@@ -8,6 +8,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OperationTypeController;
 use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\CustomController;
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\StateController;
 use App\Http\Controllers\User;
 
 /*
@@ -71,3 +73,16 @@ use App\Http\Controllers\User;
 |--------------------------------------------------------------------------
 */
     Route::get('sucursal', [OfficeController::class, 'index']);
+
+/*
+|--------------------------------------------------------------------------
+| API Routes ciudad
+|--------------------------------------------------------------------------
+*/
+    Route::get('ciudad/{id}', [CityController::class, 'show']);
+/*
+|--------------------------------------------------------------------------
+| API Routes estado
+|--------------------------------------------------------------------------
+*/
+    Route::get('estado', [StateController::class, 'index']);
