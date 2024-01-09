@@ -8,6 +8,16 @@ use App\Http\Resources\OperationResource;
 
 class OperationController extends Controller
 {
+
+     /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $operaciones = Operation::all();        
+        return new OperationResource($operaciones);
+    }
+
     public function Store(Request $request)
     {
         $resp = Operation::where('bill', request('bill'))->first();

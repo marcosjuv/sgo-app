@@ -45,6 +45,7 @@ use App\Http\Controllers\User;
 | API Routes operaciones
 |--------------------------------------------------------------------------
 */
+    Route::get('list', [OperationController::class, 'index']);
     Route::post('operaciones', [OperationController::class, 'store']);
 /*
 |--------------------------------------------------------------------------
