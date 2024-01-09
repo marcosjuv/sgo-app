@@ -18,7 +18,17 @@ class ClientController extends Controller
 
     public function Store(Request $request)
     {
-        return new ClientResource(Client::create($request->all()));
+        $cliente = new ClientResource(Client::create($request->all()));
+        if ($cliente) {
+            return response()->json([
+                'mensaje' => 'Cliente registrado'
+            ]);
+        } else {
+            return response()->json([
+                'mensaje' => 'Fallo el registrado'
+            ]);
+        }
+        
     }
 
     public function Update(Request $request, Client $client)

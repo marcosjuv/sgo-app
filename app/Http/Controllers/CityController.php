@@ -37,7 +37,7 @@ class CityController extends Controller
      */
     public function show($id)
     {
-        $city = City::where('state_id','=', $id)->get('name');        
+        $city = City::where('state_id','=', $id)->get();        
         return new CityResource($city);
     }
 
