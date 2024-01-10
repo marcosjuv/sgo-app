@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('customs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('observation');
+            $table->string('observation')->nullable();
             $table->boolean('active');
             $table->timestamps();
         });

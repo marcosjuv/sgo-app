@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class State extends Model
 {
-    use HasFactory;
+   use HasFactory;
 
-    public function cities(){
-       return $this->hasMany(State::class);
+   public function cities(){
+      return $this->hasMany(State::class);
+   }
+
+   public function clientes(){
+      return $this->hasMany(Client::class);
    }
 }

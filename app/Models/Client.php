@@ -9,6 +9,8 @@ class Client extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'state_id',
+        'city_id',
         'name',
         'rif',
         'address',
@@ -17,8 +19,6 @@ class Client extends Model
         'email',
         'contact_person',
         'position_contact',
-        'city',
-        'state',
         'comment',
         'active'
     ];
@@ -30,5 +30,13 @@ class Client extends Model
     */
    public function operations(){
        return $this->hasMany(Operation::class);
+   }
+
+   public function estado(){
+       return $this->hasOne(State::class);
+   }
+
+   public function ciudad(){
+       return $this->hasOne(City::class);
    }
 }

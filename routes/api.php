@@ -59,6 +59,9 @@ use App\Http\Controllers\User;
 |--------------------------------------------------------------------------
 */
     Route::get('aduana', [CustomController::class, 'index']);
+    Route::get('aduana/{id}', [CustomController::class, 'getById']);
+    Route::put('update/{id}', [CustomController::class, 'edit']);
+    Route::post('aduanacreate', [CustomController::class, 'store']);
 /*
 |--------------------------------------------------------------------------
 | API Routes clientes

@@ -9,7 +9,11 @@ class City extends Model
 {
     use HasFactory;
 
-    public function states(){
-       return $this->hasOne(State::class);
+   public function states(){
+      return $this->hasOne(State::class);
+   }
+
+   public function clientes(){
+      return $this->hasMany(Client::class);
    }
 }
