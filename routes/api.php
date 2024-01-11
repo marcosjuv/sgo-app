@@ -53,6 +53,10 @@ use App\Http\Controllers\User;
 |--------------------------------------------------------------------------
 */
     Route::get('operationstype', [OperationTypeController::class, 'index']);
+    Route::get('operationstype/{id}', [OperationTypeController::class, 'getById']);
+    Route::get('operationstype/{id}', [OperationTypeController::class, 'edit']);
+    Route::get('operationstype/{id}', [OperationTypeController::class, 'destroy']);
+    Route::get('operationstypecreate', [OperationTypeController::class, 'store']);
 /*
 |--------------------------------------------------------------------------
 | API Routes aduanas
@@ -68,10 +72,10 @@ use App\Http\Controllers\User;
 | API Routes clientes
 |--------------------------------------------------------------------------
 */
-    Route::post('create', [ClientController::class, 'store']);
     Route::get('clients', [ClientController::class, 'index']);
     Route::get('getid/{id}', [ClientController::class, 'getClientById']);
     Route::get('name/{name}', [ClientController::class, 'getClientByName']);
+    Route::post('create', [ClientController::class, 'store']);
 /*
 |--------------------------------------------------------------------------
 | API Routes sucursales
