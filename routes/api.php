@@ -61,6 +61,7 @@ use App\Http\Controllers\User;
     Route::get('aduana', [CustomController::class, 'index']);
     Route::get('aduana/{id}', [CustomController::class, 'getById']);
     Route::put('update/{id}', [CustomController::class, 'edit']);
+    Route::delete('delete/{id}', [CustomController::class, 'destroy']);
     Route::post('aduanacreate', [CustomController::class, 'store']);
 /*
 |--------------------------------------------------------------------------
@@ -77,6 +78,10 @@ use App\Http\Controllers\User;
 |--------------------------------------------------------------------------
 */
     Route::get('sucursal', [OfficeController::class, 'index']);
+    Route::get('sucursal', [OfficeController::class, 'index']);
+    Route::put('sucursal', [OfficeController::class, 'index']);
+    Route::delete('sucursal', [OfficeController::class, 'index']);
+    Route::post('sucursal', [OfficeController::class, 'index']);
 
 /*
 |--------------------------------------------------------------------------

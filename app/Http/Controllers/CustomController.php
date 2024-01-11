@@ -40,14 +40,24 @@ class CustomController extends Controller
     public function edit(Request $request, $id)
     {
         $aduana = Custom::find($id);
-        $aduana->name = $request->input('name');
-        $aduana->observation = $request->input('observation');
-        $aduana->active = $request->input('active');
-        $aduana->save();
-        return response()->json([
-            'message' => 'Product updated successfully',
-            'product' => $aduana
-        ], 200);
+        if ($aduana) {
+            $aduana->name = $request->name;
+            $aduana->observation = $request->observation;
+            $aduana->active = $request->active;
+            $aduana->update($request->all());
+            return response()->json(['message' => 'Aduana updated successfully','data' => $aduana], 200);
+        }else{
+            return response()->json(['message' => 'Data not found'], 404);
+        }
+    }
 
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id)
+    {
+        $aduana = Custom::find($id);
+        $aduana->delete();
+        return response()->json(['message' => 'Aduana deleted successfully'], 200);
     }
 }
