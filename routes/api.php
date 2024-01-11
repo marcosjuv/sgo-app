@@ -78,10 +78,10 @@ use App\Http\Controllers\User;
 |--------------------------------------------------------------------------
 */
     Route::get('sucursal', [OfficeController::class, 'index']);
-    Route::get('sucursal', [OfficeController::class, 'index']);
-    Route::put('sucursal', [OfficeController::class, 'index']);
-    Route::delete('sucursal', [OfficeController::class, 'index']);
-    Route::post('sucursal', [OfficeController::class, 'index']);
+    Route::get('sucursal/{id}', [OfficeController::class, 'getById']);
+    Route::put('update/{id}', [OfficeController::class, 'edit']);
+    Route::delete('delete/{id}', [OfficeController::class, 'destroy']);
+    Route::post('sucursalcreate', [OfficeController::class, 'store']);
 
 /*
 |--------------------------------------------------------------------------

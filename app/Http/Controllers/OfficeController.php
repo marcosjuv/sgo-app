@@ -23,7 +23,7 @@ class OfficeController extends Controller
         }
     }
 
-    public function getById(Request $request)
+    public function getById(Request $request, $id)
     {
         $sucursal = Office::find($id);
         return response()->json($sucursal);
