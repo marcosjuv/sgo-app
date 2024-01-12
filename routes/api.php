@@ -54,9 +54,9 @@ use App\Http\Controllers\User;
 */
     Route::get('operationstype', [OperationTypeController::class, 'index']);
     Route::get('operationstype/{id}', [OperationTypeController::class, 'getById']);
-    Route::get('operationstype/{id}', [OperationTypeController::class, 'edit']);
-    Route::get('operationstype/{id}', [OperationTypeController::class, 'destroy']);
-    Route::get('operationstypecreate', [OperationTypeController::class, 'store']);
+    Route::put('operationstype/{id}', [OperationTypeController::class, 'edit']);
+    Route::delete('operationstype/{id}', [OperationTypeController::class, 'destroy']);
+    Route::post('operationstypecreate', [OperationTypeController::class, 'store']);
 /*
 |--------------------------------------------------------------------------
 | API Routes aduanas
