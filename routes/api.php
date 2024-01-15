@@ -73,6 +73,8 @@ use App\Http\Controllers\User;
 |--------------------------------------------------------------------------
 */
     Route::get('clients', [ClientController::class, 'index']);
+    Route::put('clients/{id}', [ClientController::class, 'update']);
+    Route::delete('clients/{id}', [ClientController::class, 'destroy']);
     Route::get('getid/{id}', [ClientController::class, 'getClientById']);
     Route::get('name/{name}', [ClientController::class, 'getClientByName']);
     Route::post('create', [ClientController::class, 'store']);
@@ -99,3 +101,4 @@ use App\Http\Controllers\User;
 |--------------------------------------------------------------------------
 */
     Route::get('estado', [StateController::class, 'index']);
+    Route::get('estado/{id}', [StateController::class, 'getById']);

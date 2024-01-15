@@ -17,6 +17,12 @@ class StateController extends Controller
         return new StateResource($state);
     }
 
+    public function getById(Request $request)
+    {
+        $estado = State::find($request->id);
+        return response()->json([$estado],200);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
