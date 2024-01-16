@@ -40,7 +40,7 @@ return new class extends Migration
             $table->string('comment');
             $table->boolean('active');
             $table->timestamps();
-        });
+        });         
 
         Schema::create('operations', function (Blueprint $table) {
             $table->id();
@@ -58,6 +58,7 @@ return new class extends Migration
             $table->string('merchandise_destination')->nullable();
             $table->string('transport_vehicle')->nullable();
             $table->dateTime('vehicle_arrival_date')->nullable();
+            $table->string('warehouse')->nullable();
             $table->dateTime('reception_documents_fax')->nullable();
             $table->dateTime('reception_original_documents')->nullable();
             $table->string('reception_comments')->nullable();
@@ -72,25 +73,11 @@ return new class extends Migration
             $table->dateTime('billed_file')->nullable();
             $table->dateTime('shipping_invoice_customer')->nullable();
             $table->dateTime('customer_invoice_reception')->nullable();
-            $table->string('dua_printed_form')->nullable();
             $table->string('additional_day_details')->nullable();
             $table->dateTime('dai_registration')->nullable();
-            $table->dateTime('dispatch_date')->nullable();
-            $table->string('payroll_number')->nullable();
             $table->string('dua_dia')->nullable();
-            $table->integer('cif')->nullable();
-            $table->double('package', 8, 2)->nullable();
-            $table->double('gross_weight', 8, 2)->nullable();
-            $table->double('dollar_value', 8, 2)->nullable();
-            $table->double('currency_exchange', 8, 2)->nullable();
-            $table->double('value_bolivars', 8, 2)->nullable();
-            $table->double('storage_amount', 8, 2)->nullable();
-            $table->double('seniat_tax', 8, 2)->nullable();
-            $table->double('treasury_tax', 8, 2)->nullable();
-            $table->double('customer_deposit', 8, 2)->nullable();
-            $table->integer('status')->default('1');
             $table->string('process_color')->nullable();
-            $table->string('shipping_guide')->nullable();
+            $table->integer('status')->default('1');
             $table->integer('comment')->nullable();
             $table->timestamps();
 
@@ -99,6 +86,8 @@ return new class extends Migration
             $table->foreign('custom_id')->references('id')->on('customs')->onUpdate('cascade')->onDelete('cascade')->constrained();
             $table->foreign('client_id')->references('id')->on('clients')->onUpdate('cascade')->onDelete('cascade')->constrained();
         });
+
+       
     }
 
     /**

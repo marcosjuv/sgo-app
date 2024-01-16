@@ -47,6 +47,7 @@ use App\Http\Controllers\User;
 */
     Route::get('list', [OperationController::class, 'index']);
     Route::post('operaciones', [OperationController::class, 'store']);
+    Route::post('operaciones/{id}', [OperationController::class, 'store']);
 /*
 |--------------------------------------------------------------------------
 | API Routes Tipo de operaciones
