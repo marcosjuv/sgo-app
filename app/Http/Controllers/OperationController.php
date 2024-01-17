@@ -16,7 +16,13 @@ class OperationController extends Controller
     public function index()
     {
         $operaciones = Operation::paginate();        
-        return new OperationResource($operaciones);
+        return new OperationCollection($operaciones);
+    }
+
+    public function show(Operation $operaciones)
+    {
+        $operaciones = Operation::paginate();        
+        return new OperationCollection($operaciones);
     }
 
     public function Store(Request $request)
