@@ -49,7 +49,7 @@ return new class extends Migration
             $table->foreignId('office_id');
             $table->foreignId('custom_id');
             $table->string('document')->nullable();
-            $table->integer('file')->nullable();
+            $table->string('file')->nullable();
             $table->string('bill');
             $table->string('merchandise_description')->nullable();
             $table->string('dispatcher')->nullable();
@@ -77,8 +77,8 @@ return new class extends Migration
             $table->dateTime('dai_registration')->nullable();
             $table->string('dua_dia')->nullable();
             $table->string('process_color')->nullable();
-            $table->integer('status')->default('1');
-            $table->integer('comment')->nullable();
+            $table->enum('status',['0','1'])->default('1');
+            $table->string('comment')->nullable();
             $table->timestamps();
 
             $table->foreign('operation_type_id')->references('id')->on('operation_types')->onUpdate('cascade')->onDelete('cascade')->constrained();

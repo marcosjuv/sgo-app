@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Operation;
 use App\Http\Resources\OperationResource;
+use App\Http\Resources\OperationCollection;
 
 class OperationController extends Controller
 {
@@ -14,7 +15,7 @@ class OperationController extends Controller
      */
     public function index()
     {
-        $operaciones = Operation::all();        
+        $operaciones = Operation::paginate();        
         return new OperationResource($operaciones);
     }
 
