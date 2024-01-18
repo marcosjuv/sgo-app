@@ -14,4 +14,8 @@ class Custom extends Model
         'observation',
         'active'
     ];
+
+    public function operations(){
+       return $this->hasMany(Operation::class);
+    }
 }

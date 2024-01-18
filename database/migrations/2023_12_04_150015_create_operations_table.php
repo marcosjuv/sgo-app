@@ -59,7 +59,6 @@ return new class extends Migration
             $table->string('transport_vehicle')->nullable();
             $table->dateTime('vehicle_arrival_date')->nullable();
             $table->string('warehouse')->nullable();
-            $table->dateTime('reception_documents_fax')->nullable();
             $table->dateTime('reception_original_documents')->nullable();
             $table->string('reception_comments')->nullable();
             $table->dateTime('funds_request')->nullable();

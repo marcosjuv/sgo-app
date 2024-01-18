@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Operation;
 use App\Http\Resources\OperationResource;
 use App\Http\Resources\OperationCollection;
+use Illuminate\Support\Facades\DB;
 
 class OperationController extends Controller
 {
@@ -25,9 +26,17 @@ class OperationController extends Controller
         return new OperationCollection($operaciones);
     }
 
+    public function getByBill()
+    {
+        $operaciones = (new Operation)->newQuery();
+        if (request()->filled('bill')) {
+            $operaciones->where('bill','LIKE','%' .request('bill'). '%');
+        }
+        return $operaciones->paginate();
+    }
+
     public function Store(Request $request)
     {
-        // dd($request);
         $resp = Operation::where('bill', request('bill'))->first();
         if ($resp) {
             return response()->json(['mensaje' => 'Factura ya esta registrada'], 403);
@@ -56,7 +65,6 @@ class OperationController extends Controller
             $operaciones->transport_vehicle = $request->transport_vehicle;
             $operaciones->vehicle_arrival_date = $request->vehicle_arrival_date;
             $operaciones->warehouse = $request->warehouse;
-            $operaciones->reception_documents_fax = $request->reception_documents_fax;
             $operaciones->reception_original_documents = $request->reception_original_documents;
             $operaciones->reception_comments = $request->reception_comments;
             $operaciones->funds_request = $request->funds_request;

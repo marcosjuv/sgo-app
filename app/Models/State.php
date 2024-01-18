@@ -9,11 +9,11 @@ class State extends Model
 {
    use HasFactory;
 
-   public function cities(){
-      return $this->hasMany(State::class);
-   }
+   protected $fillable = [        
+        'name'       
+    ];
 
-   public function clientes(){
-      return $this->hasMany(Client::class);
+   public function cities(){
+      return $this->belongsTo(City::class);
    }
 }

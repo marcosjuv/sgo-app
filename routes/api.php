@@ -46,8 +46,8 @@ use App\Http\Controllers\User;
 |--------------------------------------------------------------------------
 */
     Route::get('list', [OperationController::class, 'index']);
-    Route::get('listar', [OperationController::class, 'show']);
     Route::post('operaciones', [OperationController::class, 'store']);
+    Route::get('operation', [OperationController::class, 'getByBill']);
     Route::post('operaciones/{id}', [OperationController::class, 'store']);
 /*
 |--------------------------------------------------------------------------

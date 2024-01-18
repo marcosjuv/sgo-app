@@ -28,15 +28,12 @@ class Client extends Model
     *
     * @return \Illuminate\Database\Eloquent\Relations\HasMany
     */
-   public function operations(){
-       return $this->hasMany(Operation::class);
-   }
 
    public function estado(){
-       return $this->hasOne(State::class);
+       return $this->belongsTo(State::class);
    }
 
    public function ciudad(){
-       return $this->hasOne(City::class);
+       return $this->belongsTo(City::class);
    }
 }

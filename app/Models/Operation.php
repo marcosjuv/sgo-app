@@ -23,7 +23,6 @@ class Operation extends Model
         'merchandise_destination',
         'transport_vehicle',
         'vehicle_arrival_date',
-        'reception_documents_fax',
         'reception_original_documents',
         'reception_comments',
         'funds_request',
@@ -34,30 +33,15 @@ class Operation extends Model
         'delivery_dispatch_transport',
         'warehouse',
         'warehouse_vehicle_exit',
-        'billing_date',
         'billing_file',
         'billed_file',
         'shipping_invoice_customer',
         'customer_invoice_reception',
-        'dua_printed_form',
         'additional_day_details',
         'dai_registration',
-        'dispatch_date',
-        'payroll_number',
         'dua_dia',
-        'cif',
-        'package',
-        'gross_weight',
-        'dollar_value',
-        'currency_exchange',
-        'value_bolivars',
-        'storage_amount',
-        'seniat_tax',
-        'treasury_tax',
-        'customer_deposit',
         'status',
         'process_color',
-        'shipping_guide',
         'comment'       
     ];
 
@@ -66,7 +50,8 @@ class Operation extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function operationstype(){
+    
+    public function type(){
         return $this->belongsTo(OperationType::class);
     }
 
