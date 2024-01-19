@@ -20,27 +20,17 @@ return new class extends Migration
         Schema::create('operation_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('active');
+            $table->enum('active',[0,1])->default('1');
             $table->timestamps();
         });
 
         Schema::create('offices', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('comment');
-            $table->boolean('active');
+            $table->string('comment')->nullable();
+            $table->enum('active',[0,1])->default('1');
             $table->timestamps();
-        });
-
-        Schema::create('warehouses', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('address');
-            $table->string('phone_number');
-            $table->string('comment');
-            $table->boolean('active');
-            $table->timestamps();
-        });         
+        });          
 
         Schema::create('operations', function (Blueprint $table) {
             $table->id();
@@ -76,7 +66,7 @@ return new class extends Migration
             $table->dateTime('dai_registration')->nullable();
             $table->string('dua_dia')->nullable();
             $table->string('process_color')->nullable();
-            $table->enum('status',['0','1'])->default('1');
+            $table->enum('status',[0,1])->default('1');
             $table->string('comment')->nullable();
             $table->timestamps();
 

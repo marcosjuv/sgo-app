@@ -16,7 +16,6 @@ return new class extends Migration
         //     $table->foreignId('state_id');
         //     $table->string('name');
         //     $table->timestamps();
-
         //     $table->foreign('state_id')->references('id')->on('states')->onUpdate('cascade')->onDelete('cascade')->constrained();
         // });
     }

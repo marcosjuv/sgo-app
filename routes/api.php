@@ -10,6 +10,7 @@ use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\CustomController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\StateController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\User;
 
 /*
@@ -38,8 +39,10 @@ use App\Http\Controllers\User;
 | API Routes usuario
 |--------------------------------------------------------------------------
 */
-    Route::post('createuser', [UserController::class, 'store']);
     Route::get('listusers', [UserController::class, 'index']);
+    Route::post('createuser', [UserController::class, 'store']);
+    Route::get('user/{id}', [UserController::class, 'getbyid']);
+    Route::put('user/{id}', [UserController::class, 'update']);
 /*
 |--------------------------------------------------------------------------
 | API Routes operaciones

@@ -22,7 +22,6 @@ return new class extends Migration
             $table->foreignId('state_id');
             $table->string('name');
             $table->timestamps();
-
             $table->foreign('state_id')->references('id')->on('states')->onUpdate('cascade')->onDelete('cascade')->constrained();
         });
         
@@ -39,7 +38,7 @@ return new class extends Migration
             $table->string('contact_person')->nullable();
             $table->string('position_contact')->nullable();
             $table->string('comment')->nullable();
-            $table->boolean('active');
+            $table->enum('active',[0,1])->default(1);
             $table->timestamps();
 
             $table->foreign('state_id')->references('id')->on('states')->onUpdate('cascade')->onDelete('cascade')->constrained();

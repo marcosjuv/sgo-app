@@ -10,8 +10,6 @@ use App\Http\Resources\UserResource;
 class UserController extends Controller
 {
     function index(Request $request) {
-        // $user = User::paginate();
-        // return new UserCollection($user);
         return User::paginate();
     }
 
@@ -22,13 +20,30 @@ class UserController extends Controller
             return response()->json(['mensaje' => 'Correo ya esta registrado'], 403);
         }else {
             $resp = new UserResource(User::create($request->all()));
-            return response()->json([
-                'mensaje' => 'Usuario creado'], 201);
+            return response()->json(['mensaje' => 'Usuario creado'], 201);
         }
     }
 
-    public function Update(Request $request, User $user)
+    public function getById(Request $request, $id)
     {
-        return $user->update($request->all());
+        // $user = User::find($id);
+        $user = new UserResource(User::find($id));
+        return response()->json($user);
+    }
+
+    public function Update(Request $request, $id)
+    {
+        $user = User::find($id);
+        if ($user) {
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = $request->password;
+            $user->active = $request->active;
+            $user->update($request->all());
+            return response()->json(['message' => 'Usuario updated successfully','data' => $user], 200);
+        }else{
+            return response()->json(['message' => 'Data not found'], 404);
+        }
+        // return $user->update($request->all());
     }
 }
