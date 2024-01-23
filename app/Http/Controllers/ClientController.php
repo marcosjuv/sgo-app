@@ -54,10 +54,23 @@ class ClientController extends Controller
         }
     }
 
-    public function getClientById(Request $request, $id)
+    public function getClientById($id)
     {
         $client = Client::find($id);
-        return response()->json($client);
+        return response()->json([
+            'state_id' => $client->state->name,
+            'city_id' => $client->city->name,
+            'name' => $client->name,
+            'rif' => $client->rif,
+            'address' => $client->address,
+            'phone_number1' => $client->phone_number1,
+            'phone_number2' => $client->phone_number2,
+            'email' => $client->email,
+            'contact_person' => $client->contact_person,
+            'position_contact' => $client->position_contact,
+            'comment' => $client->comment,
+            'active' => $client->active,
+        ]);
     } 
 
     public function getClientByName(Request $request)

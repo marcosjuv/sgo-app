@@ -50,7 +50,7 @@ use App\Http\Controllers\User;
 */
     Route::get('list', [OperationController::class, 'index']);
     Route::post('operaciones', [OperationController::class, 'store']);
-    Route::get('operation', [OperationController::class, 'getByBill']);
+    Route::get('operation', [OperationController::class, 'getbybill']);
     Route::post('operaciones/{id}', [OperationController::class, 'store']);
 /*
 |--------------------------------------------------------------------------
@@ -58,7 +58,7 @@ use App\Http\Controllers\User;
 |--------------------------------------------------------------------------
 */
     Route::get('operationstype', [OperationTypeController::class, 'index']);
-    Route::get('operationstype/{id}', [OperationTypeController::class, 'getById']);
+    Route::get('operationstype/{id}', [OperationTypeController::class, 'getbyid']);
     Route::put('operationstype/{id}', [OperationTypeController::class, 'edit']);
     Route::delete('operationstype/{id}', [OperationTypeController::class, 'destroy']);
     Route::post('operationstypecreate', [OperationTypeController::class, 'store']);
@@ -80,8 +80,8 @@ use App\Http\Controllers\User;
     Route::get('clients', [ClientController::class, 'index']);
     Route::put('clients/{id}', [ClientController::class, 'update']);
     Route::delete('clients/{id}', [ClientController::class, 'destroy']);
-    Route::get('getid/{id}', [ClientController::class, 'getClientById']);
-    Route::get('name/{name}', [ClientController::class, 'getClientByName']);
+    Route::get('getid/{id}', [ClientController::class, 'getclientbyid']);
+    Route::get('name/{name}', [ClientController::class, 'getclientbyname']);
     Route::post('create', [ClientController::class, 'store']);
 /*
 |--------------------------------------------------------------------------
