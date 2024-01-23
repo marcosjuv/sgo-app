@@ -29,11 +29,11 @@ class Client extends Model
     * @return \Illuminate\Database\Eloquent\Relations\HasMany
     */
 
-   public function estado(){
+   public function state(){
        return $this->belongsTo(State::class);
    }
 
-   public function ciudad(){
+   public function city(){
        return $this->belongsTo(City::class);
    }
 }

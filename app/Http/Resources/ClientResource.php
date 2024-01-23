@@ -22,8 +22,8 @@ class ClientResource extends JsonResource
             'phone_number1' => $this->phone_number1,
             'phone_number2' => $this->phone_number2,
             'contact_person' => $this->contact_person,
-            'state' => $this->estado,
-            'city' => $this->ciudad,
+            'state_id' => $this->state->name ?? 'estado',
+            'city_id' => $this->city->name ?? 'ciudad',
         ];
     }
 }

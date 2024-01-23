@@ -48,7 +48,7 @@ class ClientController extends Controller
             $cliente->comment = $request->comment;
             $cliente->active = $request->active;
             $cliente->update($request->all());
-            return response()->json(['message' => 'Cliente updated successfully','data' => $cliente], 200);
+            return response()->json(['message' => 'Exito - cliente actualizado','data' => $cliente], 200);
         }else{
             return response()->json(['message' => 'Data not found'], 404);
         }
@@ -73,6 +73,6 @@ class ClientController extends Controller
     {
         $cliente = Client::find($id);
         $cliente->delete();
-        return response()->json(['message' => 'Cliente deleted successfully'], 200);
+        return response()->json(['message' => 'Cliente eliminado'], 200);
     }
 }
