@@ -54,8 +54,7 @@ class ClientController extends Controller
         }
     }
 
-    public function getClientById($id)
-    {
+    public function getDataClient($id){
         $client = Client::find($id);
         return response()->json([
             'state_id' => $client->state->name,
@@ -71,6 +70,12 @@ class ClientController extends Controller
             'comment' => $client->comment,
             'active' => $client->active,
         ]);
+    }
+
+    public function getClientById($id)
+    {
+         $client = Client::find($id);
+         return response()->json($client);
     } 
 
     public function getClientByName(Request $request)

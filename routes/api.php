@@ -51,7 +51,8 @@ use App\Http\Controllers\User;
     Route::get('list', [OperationController::class, 'index']);
     Route::post('operaciones', [OperationController::class, 'store']);
     Route::get('operation/{id}', [OperationController::class, 'getoperationbyid']);
-    Route::post('operaciones/{id}', [OperationController::class, 'store']);
+    Route::get('operationdata/{id}', [OperationController::class, 'getdataoperation']);
+    Route::put('operaciones/{id}', [OperationController::class, 'update']);
 /*
 |--------------------------------------------------------------------------
 | API Routes Tipo de operaciones
@@ -81,7 +82,7 @@ use App\Http\Controllers\User;
     Route::put('clients/{id}', [ClientController::class, 'update']);
     Route::delete('clients/{id}', [ClientController::class, 'destroy']);
     Route::get('getid/{id}', [ClientController::class, 'getclientbyid']);
-    Route::get('name/{name}', [ClientController::class, 'getclientbyname']);
+    Route::get('client/{id}', [ClientController::class, 'getdataclient']);
     Route::post('create', [ClientController::class, 'store']);
 /*
 |--------------------------------------------------------------------------

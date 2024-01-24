@@ -26,7 +26,7 @@ class OperationController extends Controller
         return new OperationCollection($operaciones);
     }
 
-    public function getOperationById($id)
+    public function getDataOperation($id)
     {
         $operaciones = Operation::find($id);
         return response()->json([
@@ -64,7 +64,13 @@ class OperationController extends Controller
             'process_color' => $operaciones->process_color,
             'status' => $operaciones->status,
             'comment' => $operaciones->comment,
-        ]);
+        ]);        
+    }
+
+    public function getOperationById($id)
+    {
+        $operaciones = Operation::find($id);
+        return response()->json($operaciones);
     }
 
     public function Store(Request $request)
@@ -78,7 +84,7 @@ class OperationController extends Controller
         }
     }
 
-    public function edit(Request $request, $id)
+    public function Update(Request $request, $id)
     {
         $operaciones = Operation::find($id);
         if ($operaciones) {
@@ -117,7 +123,7 @@ class OperationController extends Controller
             $operaciones->status = $request->status;
             $operaciones->comment = $request->comment;
             $operaciones->update($request->all());
-            return response()->json(['message' => 'Aduana updated successfully','data' => $operaciones], 200);
+            return response()->json(['message' => 'Operacion actualizada','data' => $operaciones], 200);
         }else{
             return response()->json(['message' => 'Data not found'], 404);
         }
