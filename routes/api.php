@@ -50,7 +50,7 @@ use App\Http\Controllers\User;
 */
     Route::get('list', [OperationController::class, 'index']);
     Route::post('operaciones', [OperationController::class, 'store']);
-    Route::get('operation', [OperationController::class, 'getbybill']);
+    Route::get('operation/{id}', [OperationController::class, 'getoperationbyid']);
     Route::post('operaciones/{id}', [OperationController::class, 'store']);
 /*
 |--------------------------------------------------------------------------

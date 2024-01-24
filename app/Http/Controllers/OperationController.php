@@ -16,23 +16,55 @@ class OperationController extends Controller
      */
     public function index()
     {
-        $operaciones = Operation::paginate();        
+        $operaciones = Operation::paginate();
         return new OperationCollection($operaciones);
     }
 
     public function show(Operation $operaciones)
     {
-        $operaciones = Operation::paginate();        
+        $operaciones = Operation::paginate();
         return new OperationCollection($operaciones);
     }
 
-    public function getByBill()
+    public function getOperationById($id)
     {
-        $operaciones = (new Operation)->newQuery();
-        if (request()->filled('bill')) {
-            $operaciones->where('bill','LIKE','%' .request('bill'). '%');
-        }
-        return $operaciones->paginate();
+        $operaciones = Operation::find($id);
+        return response()->json([
+            'client_id' => $operaciones->client->name,
+            'operation_type_id' => $operaciones->operationtype->name ?? 'operacion',
+            'office_id' => $operaciones->office->name,
+            'custom_id' => $operaciones->custom->name,
+            'document' => $operaciones->document,
+            'file' => $operaciones->file,
+            'bill' => $operaciones->bill,
+            'merchandise_description' => $operaciones->merchandise_description,
+            'dispatcher' => $operaciones->dispatcher,
+            'merchandise_origin' => $operaciones->merchandise_origin,
+            'merchandise_source' => $operaciones->merchandise_source,
+            'merchandise_destination' => $operaciones->merchandise_destination,
+            'transport_vehicle' => $operaciones->transport_vehicle,
+            'vehicle_arrival_date' => $operaciones->vehicle_arrival_date,
+            'warehouse' => $operaciones->warehouse,
+            'reception_original_documents' => $operaciones->reception_original_documents,
+            'reception_comments' => $operaciones->reception_comments,
+            'funds_request' => $operaciones->funds_request,
+            'procedure_sidunea' => $operaciones->procedure_sidunea,
+            'customs_presentation' => $operaciones->customs_presentation,
+            'customs_recognition' => $operaciones->customs_recognition,
+            'bank_cancellation' => $operaciones->bank_cancellation,
+            'delivery_dispatch_transport' => $operaciones->delivery_dispatch_transport,
+            'warehouse_vehicle_exit' => $operaciones->warehouse_vehicle_exit,
+            'billing_file' => $operaciones->billing_file,
+            'billed_file' => $operaciones->billed_file,
+            'shipping_invoice_customer' => $operaciones->shipping_invoice_customer,
+            'customer_invoice_reception' => $operaciones->customer_invoice_reception,
+            'additional_day_details' => $operaciones->additional_day_details,
+            'dai_registration' => $operaciones->dai_registration,
+            'dua_dia' => $operaciones->dua_dia,
+            'process_color' => $operaciones->process_color,
+            'status' => $operaciones->status,
+            'comment' => $operaciones->comment,
+        ]);
     }
 
     public function Store(Request $request)
