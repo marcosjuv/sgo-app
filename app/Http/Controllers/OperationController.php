@@ -30,10 +30,10 @@ class OperationController extends Controller
     {
         $operaciones = Operation::find($id);
         return response()->json([
-            'client_id' => $operaciones->client->name,
-            'operation_type_id' => $operaciones->operationtype->name ?? 'operacion',
-            'office_id' => $operaciones->office->name,
-            'custom_id' => $operaciones->custom->name,
+            'client_id' => $operaciones->client_id,
+            'operation_type_id' => $operaciones->operation_type_id,
+            'office_id' => $operaciones->office_id,
+            'custom_id' => $operaciones->custom_id,
             'document' => $operaciones->document,
             'file' => $operaciones->file,
             'bill' => $operaciones->bill,
