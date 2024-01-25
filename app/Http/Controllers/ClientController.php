@@ -48,7 +48,7 @@ class ClientController extends Controller
             $cliente->comment = $request->comment;
             $cliente->active = $request->active;
             $cliente->update($request->all());
-            return response()->json(['message' => 'Exito - cliente actualizado','data' => $cliente], 200);
+            return response()->json(['message' => 'Exito - Cliente actualizado','data' => $cliente], 200);
         }else{
             return response()->json(['message' => 'Data not found'], 404);
         }
@@ -56,20 +56,25 @@ class ClientController extends Controller
 
     public function getDataClient($id){
         $client = Client::find($id);
+        if ($client != null) {
         return response()->json([
-            'state_id' => $client->state->name,
-            'city_id' => $client->city->name,
-            'name' => $client->name,
-            'rif' => $client->rif,
-            'address' => $client->address,
-            'phone_number1' => $client->phone_number1,
-            'phone_number2' => $client->phone_number2,
-            'email' => $client->email,
-            'contact_person' => $client->contact_person,
-            'position_contact' => $client->position_contact,
-            'comment' => $client->comment,
-            'active' => $client->active,
-        ]);
+                'state_id' => $client->state->name ?? 'estado',
+                'city_id' => $client->city->name ?? 'ciudad',
+                'name' => $client->name,
+                'rif' => $client->rif,
+                'address' => $client->address,
+                'phone_number1' => $client->phone_number1,
+                'phone_number2' => $client->phone_number2,
+                'email' => $client->email,
+                'contact_person' => $client->contact_person,
+                'position_contact' => $client->position_contact,
+                'comment' => $client->comment,
+                'active' => $client->active,
+            ], 200);            
+        } else {
+            return response()->json(['error' => 'Data not found']);
+        }
+        
     }
 
     public function getClientById($id)

@@ -17,7 +17,7 @@ class OperationResource extends JsonResource
         return [
             'id' => $this->id,
             'client_id' => $this->client->name,
-            'operation_type_id' => $this->operationstype->name ?? 'tipo operacion',
+            'operation_type_id' => $this->operationType->name,
             'office_id' => $this->office->name,
             'custom_id' => $this->custom->name,
             'file' => $this->file,

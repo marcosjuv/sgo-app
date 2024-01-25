@@ -51,7 +51,7 @@ class Operation extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     
-    public function operationstype(){
+    public function operationType(){
         return $this->belongsTo(OperationType::class);
     }
 
