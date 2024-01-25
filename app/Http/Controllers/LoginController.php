@@ -35,12 +35,11 @@ class LoginController extends Controller
 
             return[
                 'token' => $token->plainTextToken,
+                'name' => $user->name,
             ];
         }
 
-        return response()->json([
-            'mensaje' => 'Credenciales invalidas'
-        ], 401);
+        return response()->json(['mensaje' => 'Credenciales invalidas'], 401);
     }
 
     public function logout() {

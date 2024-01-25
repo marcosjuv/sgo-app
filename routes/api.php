@@ -34,6 +34,7 @@ use App\Http\Controllers\User;
 |--------------------------------------------------------------------------
 */
     Route::post('login', [LoginController::class, 'login']);
+    Route::post('logout', [LoginController::class, 'logout']);
 /*
 |--------------------------------------------------------------------------
 | API Routes usuario
