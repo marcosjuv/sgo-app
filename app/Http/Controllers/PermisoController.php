@@ -30,8 +30,8 @@ class PermisoController extends Controller
      */
     public function store(Request $request)
     {
-        $rol = new PermisoResource(Permission::create($request->all()));
-        if ($rol) {
+        $permiso = new PermisoResource(Permission::create($request->all()));
+        if ($permiso) {
             return response()->json(['mensaje' => 'Permiso creado']);
         } else {
             return response()->json(['mensaje' => 'Fallo el registro']);
@@ -43,7 +43,8 @@ class PermisoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $permiso = Permission::find($id);
+        return response()->json($permiso);
     }
 
     /**
@@ -59,7 +60,14 @@ class PermisoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $permiso = Permission::find($id);
+        if ($permiso) {
+            $permiso->name = $request->name;
+            $permiso->update($request->all());
+            return response()->json(['message' => 'Permiso updated successfully','data' => $permiso], 200);
+        }else{
+            return response()->json(['message' => 'Data not found'], 401);
+        }
     }
 
     /**
@@ -67,6 +75,8 @@ class PermisoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $permiso = Permission::find($id);
+        $permiso->delete();
+        return response()->json(['message' => 'Rol deleted successfully'], 200);
     }
 }
