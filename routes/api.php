@@ -132,4 +132,4 @@ use App\Http\Controllers\User;
     Route::get('permiso/{id}', [PermisoController::class, 'show']);
     Route::put('permiso/{id}', [PermisoController::class, 'update']);
     Route::delete('permiso/{id}', [PermisoController::class, 'destroy']);
-    Route::post('permisocreate', [PermisoController::class, 'store']);
+    Route::post('createpermiso', [PermisoController::class, 'store']);
