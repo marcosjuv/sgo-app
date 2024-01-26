@@ -11,6 +11,8 @@ use App\Http\Controllers\CustomController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PermisoController;
 use App\Http\Controllers\User;
 
 /*
@@ -79,7 +81,8 @@ use App\Http\Controllers\User;
 | API Routes clientes
 |--------------------------------------------------------------------------
 */
-    Route::get('clients', [ClientController::class, 'index']);
+    Route::resource('clients', ClientController::class)->names('index');
+    // Route::get('clients', [ClientController::class, 'index']);
     Route::put('clients/{id}', [ClientController::class, 'update']);
     Route::delete('clients/{id}', [ClientController::class, 'destroy']);
     Route::get('getid/{id}', [ClientController::class, 'getclientbyid']);
@@ -109,3 +112,24 @@ use App\Http\Controllers\User;
 */
     Route::get('estado', [StateController::class, 'index']);
     Route::get('estado/{id}', [StateController::class, 'getById']);
+
+/*
+|--------------------------------------------------------------------------
+| API Routes roles
+|--------------------------------------------------------------------------
+*/
+    Route::get('roles', [RoleController::class, 'index']);
+    Route::get('rol/{id}', [RoleController::class, 'show']);
+    Route::put('rol/{id}', [RoleController::class, 'update']);
+    Route::delete('rol/{id}', [RoleController::class, 'destroy']);
+    Route::post('createrol', [RoleController::class, 'store']);
+/*
+|--------------------------------------------------------------------------
+| API Routes permisos
+|--------------------------------------------------------------------------
+*/
+    Route::get('permisos', [PermisoController::class, 'index']);
+    Route::get('permiso/{id}', [PermisoController::class, 'show']);
+    Route::put('permiso/{id}', [PermisoController::class, 'update']);
+    Route::delete('permiso/{id}', [PermisoController::class, 'destroy']);
+    Route::post('permisocreate', [PermisoController::class, 'store']);
