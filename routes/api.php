@@ -119,6 +119,7 @@ use App\Http\Controllers\User;
 |--------------------------------------------------------------------------
 */
     Route::get('roles', [RoleController::class, 'index']);
+    Route::get('dataroles', [RoleController::class, 'getRol']);
     Route::get('rol/{id}', [RoleController::class, 'show']);
     Route::put('rol/{id}', [RoleController::class, 'update']);
     Route::delete('rol/{id}', [RoleController::class, 'destroy']);
