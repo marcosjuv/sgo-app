@@ -44,6 +44,5 @@ class UserController extends Controller
         }else{
             return response()->json(['message' => 'Data not found'], 404);
         }
-        // return $user->update($request->all());
     }
 }

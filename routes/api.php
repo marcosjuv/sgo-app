@@ -26,9 +26,9 @@ use App\Http\Controllers\User;
 |
 */
 
-    Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-        return $request->user();
-    });
+    // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    //     return $request->user();
+    // });
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +37,9 @@ use App\Http\Controllers\User;
 */
     Route::post('login', [LoginController::class, 'login']);
     Route::post('logout', [LoginController::class, 'logout']);
+    // Route::post('logout', [LoginController::class, 'logout']);
+
+// Route::middleware(['auth:sanctum'])->group(function (){
 /*
 |--------------------------------------------------------------------------
 | API Routes usuario
@@ -134,3 +137,4 @@ use App\Http\Controllers\User;
     Route::put('permiso/{id}', [PermisoController::class, 'update']);
     Route::delete('permiso/{id}', [PermisoController::class, 'destroy']);
     Route::post('createpermiso', [PermisoController::class, 'store']);
+// });

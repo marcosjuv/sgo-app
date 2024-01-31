@@ -42,6 +42,11 @@ class LoginController extends Controller
         return response()->json(['mensaje' => 'Credenciales invalidas'], 401);
     }
 
+    // public function getToken()
+    // {
+    //     $token = 
+    // }
+
     public function logout() {
         $cookie = Cookie::forget('cookie_token');
         return response(["message"=>"Cierre de sesión OK"], Response::HTTP_OK)->withCookie($cookie);
