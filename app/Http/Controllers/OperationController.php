@@ -14,16 +14,18 @@ class OperationController extends Controller
      /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $operaciones = Operation::paginate();
+        $operaciones = Operation::paginate();     
         return new OperationCollection($operaciones);
     }
 
     public function show(Operation $operaciones)
     {
-        $operaciones = Operation::paginate();
-        return new OperationCollection($operaciones);
+        $operaciones = Operation::paginate();        
+        return new OperationCollection($operaciones);            
+        
+        
     }
 
     public function getDataOperation($id)
@@ -75,9 +77,9 @@ class OperationController extends Controller
 
     public function Store(Request $request)
     {
-        $resp = Operation::where('bill', request('bill'))->first();
+        $resp = Operation::where('bill', request('bill'))->Where('file',request('file'))->first();
         if ($resp) {
-            return response()->json(['mensaje' => 'Factura ya esta registrada'], 403);
+            return response()->json(['mensaje' => 'Factura ó expediente ya esta registrada'], 403);
         }else {
             $resp = new OperationResource(Operation::create($request->all()));
             return response()->json(['mensaje' => 'Operacion creada'], 200);

@@ -39,8 +39,8 @@ return new class extends Migration
             $table->foreignId('office_id');
             $table->foreignId('custom_id');
             $table->string('document')->nullable();
-            $table->string('file')->nullable();
-            $table->string('bill');
+            $table->string('file')->unique();
+            $table->string('bill')->unique();
             $table->string('merchandise_description')->nullable();
             $table->string('dispatcher')->nullable();
             $table->string('merchandise_origin')->nullable();
