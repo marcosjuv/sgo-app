@@ -7,6 +7,8 @@ use App\Models\Operation;
 use App\Http\Resources\OperationResource;
 use App\Http\Resources\OperationCollection;
 use Illuminate\Support\Facades\DB;
+use App\Exports\OperationsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OperationController extends Controller
 {
@@ -129,5 +131,10 @@ class OperationController extends Controller
         }else{
             return response()->json(['message' => 'Data not found'], 404);
         }
+    }
+
+    public function export() 
+    {
+        return Excel::download(new OperationsExport, 'ejecutivo.xlsx');
     }
 }

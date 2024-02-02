@@ -39,7 +39,6 @@ use App\Http\Controllers\User;
     Route::post('logout', [LoginController::class, 'logout']);
     // Route::post('logout', [LoginController::class, 'logout']);
 
-// Route::middleware(['auth:sanctum'])->group(function (){
 /*
 |--------------------------------------------------------------------------
 | API Routes usuario
@@ -137,4 +136,11 @@ use App\Http\Controllers\User;
     Route::put('permiso/{id}', [PermisoController::class, 'update']);
     Route::delete('permiso/{id}', [PermisoController::class, 'destroy']);
     Route::post('createpermiso', [PermisoController::class, 'store']);
-// });
+
+
+/*
+|--------------------------------------------------------------------------
+| API Routes reporte ejecutivo
+|--------------------------------------------------------------------------
+*/
+    Route::get('operations/export/', [OperationController::class, 'export']);
