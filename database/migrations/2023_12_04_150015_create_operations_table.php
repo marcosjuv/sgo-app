@@ -20,7 +20,7 @@ return new class extends Migration
         Schema::create('operation_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('active',[0,1])->default('1');
+            $table->tinyInteger('active')->default(1);
             $table->timestamps();
         });
 
@@ -28,7 +28,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('comment')->nullable();
-            $table->enum('active',[0,1])->default('1');
+            $table->tinyInteger('active')->default(1);
             $table->timestamps();
         });          
 
@@ -66,7 +66,7 @@ return new class extends Migration
             $table->dateTime('dai_registration')->nullable();
             $table->string('dua_dia')->nullable();
             $table->string('process_color')->nullable();
-            $table->enum('status',[0,1])->default('1');
+            $table->tinyInteger('status')->default(1);
             $table->string('comment')->nullable();
             $table->timestamps();
 

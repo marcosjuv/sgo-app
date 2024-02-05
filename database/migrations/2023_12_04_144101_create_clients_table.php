@@ -38,7 +38,7 @@ return new class extends Migration
             $table->string('contact_person')->nullable();
             $table->string('position_contact')->nullable();
             $table->string('comment')->nullable();
-            $table->enum('active',[0,1])->default(1);
+            $table->tinyInteger('active');
             $table->timestamps();
 
             $table->foreign('state_id')->references('id')->on('states')->onUpdate('cascade')->onDelete('cascade')->constrained();
