@@ -3,6 +3,8 @@
 namespace App\Exports;
 
 use App\Models\Operation;
+// use Illuminate\Support\Facades\DB;
+
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
@@ -41,8 +43,10 @@ class OperationsExport implements FromQuery, WithDrawings, WithHeadings, WithMap
         $this->columnFormats();
    		$this->columnWidths(); 
         $this->drawings();
-        return Operation::query();
+        return Operation::query()->where('status','=',1);
     }
+
+ 
 
     public function drawings(){
         $drawing = new Drawing();

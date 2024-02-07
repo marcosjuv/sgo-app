@@ -12,6 +12,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // \App\Models\Operation::factory(200)->create();
+
         \App\Models\User::factory()->create([
             'name' => 'Marcos Urdaneta',
             'email' => 'marcosjavieruv@gmail.com',
@@ -38,15 +40,5 @@ class DatabaseSeeder extends Seeder
             'observation' => '',
             'active' => 1,
         ]);
-
-        // DB::table('users')->insert([
-        //     'name' => Str::random(10),
-        //     'rif' => Str::random(10),
-        //     'address' => Str::random(10),
-        //     'phone_number1' => Str::random(10),
-        //     'phone_number2' => Str::random(10),
-        //     'email' => Str::random(10).'@gmail.com',
-        //     'password' => Hash::make('password'),
-        // ]);
     }
 }

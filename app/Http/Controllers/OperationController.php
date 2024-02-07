@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Operation;
+use App\Models\Client;
 use App\Http\Resources\OperationResource;
 use App\Http\Resources\OperationCollection;
 use Illuminate\Support\Facades\DB;
@@ -25,9 +26,7 @@ class OperationController extends Controller
     public function show(Operation $operaciones)
     {
         $operaciones = Operation::paginate();        
-        return new OperationCollection($operaciones);            
-        
-        
+        return new OperationCollection($operaciones);
     }
 
     public function getDataOperation($id)
@@ -131,6 +130,22 @@ class OperationController extends Controller
         }else{
             return response()->json(['message' => 'Data not found'], 404);
         }
+    }
+
+    public function operationByClient(Request $request)
+    {
+        $operacion = Client::find($request->id)->operation;
+
+        // $operacion = DB::table('operations')
+        // ->join('clients','clients.id','=','operations.client_id')
+        // ->join('operation_types','operation_types.id','=','operations.operation_type_id')
+        // ->join('offices','offices.id','=','operations.office_id')
+        // ->join('customs','customs.id','=','operations.custom_id')
+        // ->select('operations.*','clients.name as cliente','operation_types.name as tipo_operacion','offices.name as oficina','customs.name as aduana')
+        // ->where('client_id', '=', $request->id)->paginate();
+
+
+        return response()->json([$operacion]);
     }
 
     public function export() 

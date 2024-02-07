@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
+use App\Models\Operation;
 use App\Http\Resources\ClientCollection;
 use App\Http\Resources\ClientResource;
 use Illuminate\Support\Facades\DB;
@@ -92,5 +93,5 @@ class ClientController extends Controller
         $cliente = Client::find($id);
         $cliente->delete();
         return response()->json(['message' => 'Cliente eliminado'], 200);
-    }
+    }    
 }

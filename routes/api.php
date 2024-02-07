@@ -58,6 +58,7 @@ use App\Http\Controllers\User;
     Route::get('operation/{id}', [OperationController::class, 'getoperationbyid']);
     Route::get('operationdata/{id}', [OperationController::class, 'getdataoperation']);
     Route::put('operaciones/{id}', [OperationController::class, 'update']);
+    Route::get('operaciones/{id}', [OperationController::class, 'operationbyclient']);
 /*
 |--------------------------------------------------------------------------
 | API Routes Tipo de operaciones
