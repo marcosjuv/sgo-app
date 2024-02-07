@@ -134,22 +134,12 @@ class OperationController extends Controller
 
     public function operationByClient(Request $request)
     {
-        $operacion = Client::find($request->id)->operation;
-
-        // $operacion = DB::table('operations')
-        // ->join('clients','clients.id','=','operations.client_id')
-        // ->join('operation_types','operation_types.id','=','operations.operation_type_id')
-        // ->join('offices','offices.id','=','operations.office_id')
-        // ->join('customs','customs.id','=','operations.custom_id')
-        // ->select('operations.*','clients.name as cliente','operation_types.name as tipo_operacion','offices.name as oficina','customs.name as aduana')
-        // ->where('client_id', '=', $request->id)->paginate();
-
-
-        return response()->json([$operacion]);
+        $operaciones = Client::find($request->id)->operations;
+        return new OperationCollection($operaciones);
     }
 
     public function export() 
     {
-        return Excel::download(new OperationsExport, 'ejecutivo.xlsx');
+        return Excel::download(new OperationsExport, 'reporte_diario.xlsx');
     }
 }

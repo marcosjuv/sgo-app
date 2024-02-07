@@ -38,7 +38,7 @@ class Client extends Model
        return $this->belongsTo(City::class);
    }
 
-   public function operation(){
+   public function operations(){
         return $this->hasMany(Operation::class);
    } 
 }
