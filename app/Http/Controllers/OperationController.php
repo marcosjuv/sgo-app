@@ -134,7 +134,8 @@ class OperationController extends Controller
 
     public function operationByClient(Request $request)
     {
-        $operaciones = Client::find($request->id)->operations;
+        // $operaciones = Client::find($request->id)->operations;
+        $operaciones = Operation::where('client_id','=',$request->id)->paginate(10);
         return new OperationCollection($operaciones);
     }
 

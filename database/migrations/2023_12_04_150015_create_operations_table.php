@@ -61,13 +61,13 @@ return new class extends Migration
             $table->dateTime('billing_file')->nullable();
             $table->dateTime('billed_file')->nullable();
             $table->dateTime('shipping_invoice_customer')->nullable();
-            $table->dateTime('customer_invoice_reception')->nullable();
+            $table->string('customer_invoice_reception')->nullable();
             $table->string('additional_day_details')->nullable();
             $table->dateTime('dai_registration')->nullable();
             $table->string('dua_dia')->nullable();
             $table->string('process_color')->nullable();
             $table->tinyInteger('status')->default(1);
-            $table->string('comment')->nullable();
+            $table->longText('comment')->nullable();
             $table->timestamps();
 
             $table->foreign('operation_type_id')->references('id')->on('operation_types')->onUpdate('cascade')->onDelete('cascade')->constrained();
