@@ -50,7 +50,7 @@ return new class extends Migration
             $table->dateTime('vehicle_arrival_date')->nullable();
             $table->string('warehouse')->nullable();
             $table->dateTime('reception_original_documents')->nullable();
-            $table->string('reception_comments')->nullable();
+            $table->longText('reception_comments')->nullable();
             $table->dateTime('funds_request')->nullable();
             $table->dateTime('procedure_sidunea')->nullable();
             $table->dateTime('customs_presentation')->nullable();

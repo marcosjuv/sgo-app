@@ -139,6 +139,12 @@ class OperationController extends Controller
         return new OperationCollection($operaciones);
     }
 
+    public function operationFilter($fecha)
+    {
+        $operaciones = Operation::where('delivery_dispatch_transport','=',$fecha)->where('status','=','1')->paginate();
+        return new OperationCollection($operaciones);
+    }
+
     public function export() 
     {
         return Excel::download(new OperationsExport, 'reporte_diario.xlsx');
