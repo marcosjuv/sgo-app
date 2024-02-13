@@ -36,7 +36,7 @@ class OperationResource extends JsonResource
             'customs_presentation' => $this->customs_presentation,
             'customs_recognition' => $this->customs_recognition,
             'bank_cancellation' => $this->bank_cancellation,
-            'delivery_dispatch_transport' => $this->delivery_dispatch_transport,
+            'delivery_dispatch_transport' => date("Y-m-d", strtotime($this->delivery_dispatch_transport)),
             'warehouse' => $this->warehouse,
             'warehouse_vehicle_exit' => $this->warehouse_vehicle_exit,
             'billing_file' => $this->billing_file,

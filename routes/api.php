@@ -53,13 +53,13 @@ use App\Http\Controllers\User;
 | API Routes operaciones
 |--------------------------------------------------------------------------
 */
-    Route::get('list', [OperationController::class, 'index']);
-    Route::post('operaciones', [OperationController::class, 'store']);
+    Route::get('operaciones', [OperationController::class, 'index']);
+    Route::post('operacion', [OperationController::class, 'store']);
     Route::get('operation/{id}', [OperationController::class, 'getoperationbyid']);
     Route::get('operationdata/{id}', [OperationController::class, 'getdataoperation']);
     Route::put('operaciones/{id}', [OperationController::class, 'update']);
     Route::get('operaciones/{id}', [OperationController::class, 'operationbyclient']);
-    Route::get('operacionesfilter/{valor}', [OperationController::class, 'operationfilter']);
+    Route::get('operacionesfilter', [OperationController::class, 'operationfilter']);
 /*
 |--------------------------------------------------------------------------
 | API Routes Tipo de operaciones

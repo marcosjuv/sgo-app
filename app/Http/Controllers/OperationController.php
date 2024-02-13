@@ -139,9 +139,9 @@ class OperationController extends Controller
         return new OperationCollection($operaciones);
     }
 
-    public function operationFilter($fecha)
-    {
-        $operaciones = Operation::where('delivery_dispatch_transport','=',$fecha)->where('status','=','1')->paginate();
+    public function operationFilter()
+    {    
+        $operaciones = Operation::where('status','=','1')->paginate();
         return new OperationCollection($operaciones);
     }
 
