@@ -60,6 +60,7 @@ use App\Http\Controllers\User;
     Route::put('operaciones/{id}', [OperationController::class, 'update']);
     Route::get('operaciones/{id}', [OperationController::class, 'operationbyclient']);
     Route::get('operacionesfilter', [OperationController::class, 'operationfilter']);
+    Route::get('witgets', [OperationController::class, 'witgets']);
 /*
 |--------------------------------------------------------------------------
 | API Routes Tipo de operaciones

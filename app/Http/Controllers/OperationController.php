@@ -7,6 +7,8 @@ use App\Models\Operation;
 use App\Models\Client;
 use App\Http\Resources\OperationResource;
 use App\Http\Resources\OperationCollection;
+use App\Http\Resources\ReportResource;
+use App\Http\Resources\ReportCollection;
 use Illuminate\Support\Facades\DB;
 use App\Exports\OperationsExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -134,7 +136,6 @@ class OperationController extends Controller
 
     public function operationByClient(Request $request)
     {
-        // $operaciones = Client::find($request->id)->operations;
         $operaciones = Operation::where('client_id','=',$request->id)->paginate(10);
         return new OperationCollection($operaciones);
     }
@@ -142,11 +143,29 @@ class OperationController extends Controller
     public function operationFilter()
     {    
         $operaciones = Operation::where('status','=','1')->paginate();
-        return new OperationCollection($operaciones);
+        return new ReportCollection($operaciones);
     }
 
-    public function export() 
+    public function witgets()
     {
-        return Excel::download(new OperationsExport, 'reporte_diario.xlsx');
+        $operaciones = DB::table('operations')
+             ->select(DB::raw('count(*) as operations_count'))
+             ->get();
+
+        $activos = DB::table('operations')
+             ->select(DB::raw('count(*) as active'))
+             ->where('status', '=', 1)
+             ->get();
+
+        $inactivos =  DB::table('operations')
+             ->select(DB::raw('count(*) as inactive'))
+             ->where('status', '<>', 1)
+             ->get();
+
+        return response()->json([
+            "operaciones" => $operaciones,
+            "activos" => $activos,
+            "inactivos" => $inactivos
+        ]);
     }
 }
