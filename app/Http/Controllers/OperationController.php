@@ -10,6 +10,7 @@ use App\Http\Resources\OperationCollection;
 use App\Http\Resources\ReportResource;
 use App\Http\Resources\ReportCollection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use App\Exports\OperationsExport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -84,10 +85,7 @@ class OperationController extends Controller
         if ($resp) {
             return response()->json(['mensaje' => 'Factura ó expediente ya esta registrada'], 403);
         }else {
-            $resp->document = $request->file()->store('public/files');
-            // $filename = $resp->document;
-
-            // dd($resp->document);
+            $resp->document_path = $request->file('document')->store('public/files');
             $resp = new OperationResource(Operation::create($request->all()));
             return response()->json(['mensaje' => 'Operacion creada'], 200);
         }
@@ -102,6 +100,7 @@ class OperationController extends Controller
             $operaciones->office_id = $request->office_id;
             $operaciones->custom_id = $request->custom_id;
             $operaciones->document = $request->document;
+            $operaciones->document_path = $request->file('document')->store('public/files');
             $operaciones->file = $request->file;
             $operaciones->bill = $request->bill;
             $operaciones->merchandise_description = $request->merchandise_description;
