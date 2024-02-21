@@ -23,6 +23,7 @@ class ReportResource extends JsonResource
             'bill' => $this->bill,
             'merchandise_description' => $this->merchandise_description,
             'transport_vehicle' => $this->transport_vehicle,
+            'status' => $this->status,
             'comment' => $this->comment
         ];
     }

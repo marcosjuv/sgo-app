@@ -84,6 +84,10 @@ class OperationController extends Controller
         if ($resp) {
             return response()->json(['mensaje' => 'Factura ó expediente ya esta registrada'], 403);
         }else {
+            $resp->document = $request->file()->store('public/files');
+            // $filename = $resp->document;
+
+            // dd($resp->document);
             $resp = new OperationResource(Operation::create($request->all()));
             return response()->json(['mensaje' => 'Operacion creada'], 200);
         }
@@ -142,7 +146,7 @@ class OperationController extends Controller
 
     public function operationFilter()
     {    
-        $operaciones = Operation::where('status','=','1')->paginate();
+        $operaciones = Operation::paginate();
         return new ReportCollection($operaciones);
     }
 
