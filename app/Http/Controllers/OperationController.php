@@ -41,6 +41,7 @@ class OperationController extends Controller
             'office_id' => $operaciones->office->name,
             'custom_id' => $operaciones->custom->name,
             'document' => $operaciones->document,
+            'document_path' => $operaciones->document_path,
             'file' => $operaciones->file,
             'bill' => $operaciones->bill,
             'merchandise_description' => $operaciones->merchandise_description,
@@ -79,13 +80,28 @@ class OperationController extends Controller
         return response()->json($operaciones);
     }
 
+    public function nameClient($id)
+    {
+        $users = DB::table('clients')
+             ->select('name')
+             ->join('operations','operations.client_id','=','clients.id')
+             ->where('client_id', '=', $id)
+             ->first();
+             return $users;
+    }
+
     public function Store(Request $request)
     {
+        if (is_null($request->file('document_path'))) {
+            $folder = $this->nameClient($request->client_id);            
+            $path = Storage::makeDirectory('public/'.$folder->name);
+        }
+
         $resp = Operation::where('bill', request('bill'))->Where('file',request('file'))->first();
         if ($resp) {
             return response()->json(['mensaje' => 'Factura ó expediente ya esta registrada'], 403);
         }else {
-            $resp->document_path = $request->file('document')->store('public/files');
+            $request->document_path = Storage::path('file.jpg');
             $resp = new OperationResource(Operation::create($request->all()));
             return response()->json(['mensaje' => 'Operacion creada'], 200);
         }
@@ -94,13 +110,19 @@ class OperationController extends Controller
     public function Update(Request $request, $id)
     {
         $operaciones = Operation::find($id);
+        $file = $request->file('document_path');
+        $extension = $file->getClientOriginalExtension();
+        $folder = $this->nameClient($operaciones->client_id);
+        $name = $operaciones->file;
+        $file->storeAs('public/'.$folder->name, $name.DIRECTORY_SEPARATOR.date('Y-m-d').'.'.$extension);
+
         if ($operaciones) {
             $operaciones->client_id = $request->client_id;
             $operaciones->operation_type_id = $request->operation_type_id;
             $operaciones->office_id = $request->office_id;
             $operaciones->custom_id = $request->custom_id;
             $operaciones->document = $request->document;
-            $operaciones->document_path = $request->file('document')->store('public/files');
+            // $operaciones->document_path = 
             $operaciones->file = $request->file;
             $operaciones->bill = $request->bill;
             $operaciones->merchandise_description = $request->merchandise_description;

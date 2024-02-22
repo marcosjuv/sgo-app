@@ -20,6 +20,7 @@ class OperationResource extends JsonResource
             'operation_type_id' => $this->operationType->name,
             'office_id' => $this->office->name,
             'custom_id' => $this->custom->name,
+            'document_path' => $this->document_path,
             'file' => $this->file,
             'bill' => $this->bill,
             'merchandise_description' => $this->merchandise_description,
