@@ -46,6 +46,10 @@ class Operation extends Model
         'comment'       
     ];
 
+    // protected $casts = [
+    //     'delivery_dispatch_transport' => 'datetime:Y-m-d',
+    // ];
+
     /**
      * Get the user that owns the Operation
      *
@@ -67,4 +71,9 @@ class Operation extends Model
     public function client(){
         return $this->belongsTo(Client::class);
     }
+
+    // protected function delivery_dispatch_transport($date): string
+    // {
+    //     return $date->format('Y-m-d');
+    // }
 }

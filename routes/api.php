@@ -59,7 +59,7 @@ use App\Http\Controllers\User;
     Route::get('operationdata/{id}', [OperationController::class, 'getdataoperation']);
     Route::post('operaciones/{id}', [OperationController::class, 'update']);
     Route::get('operaciones/{id}', [OperationController::class, 'operationbyclient']);
-    Route::get('operacionesfilter', [OperationController::class, 'operationfilter']);
+    Route::get('operacionesfilter/{fec1}/{fec2}/{status}', [OperationController::class, 'operationfilter']);
     Route::get('witgets', [OperationController::class, 'witgets']);
 /*
 |--------------------------------------------------------------------------
