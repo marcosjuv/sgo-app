@@ -41,7 +41,6 @@ class OperationController extends Controller
             'office_id' => $operaciones->office->name,
             'custom_id' => $operaciones->custom->name,
             'document' => $operaciones->document,
-            'document_path' => $operaciones->document_path,
             'file' => $operaciones->file,
             'bill' => $operaciones->bill,
             'merchandise_description' => $operaciones->merchandise_description,
@@ -92,7 +91,7 @@ class OperationController extends Controller
 
     public function Store(Request $request)
     {
-        if (is_null($request->file('document_path'))) {
+        if (is_null($request->file('document'))) {
             $folder = $this->nameClient($request->client_id);            
             $path = Storage::makeDirectory('public/'.$folder->name);
         }
@@ -110,7 +109,7 @@ class OperationController extends Controller
     public function Update(Request $request, $id)
     {
         $operacion = Operation::find($id);
-        $file = $request->file('document_path');
+        $file = $request->file('document');
         $extension = $file->getClientOriginalExtension();
         $folder = $operacion->client_id;
         $name = $operacion->file;
@@ -122,8 +121,7 @@ class OperationController extends Controller
             $operacion->operation_type_id = $request->operation_type_id;
             $operacion->office_id = $request->office_id;
             $operacion->custom_id = $request->custom_id;
-            $operacion->document = $request->document;
-            $operacion->document_path = $file_path;
+            $operacion->document = $file_path;
             $operacion->file = $request->file;
             $operacion->bill = $request->bill;
             $operacion->merchandise_description = $request->merchandise_description;
@@ -162,8 +160,20 @@ class OperationController extends Controller
 
     public function operationByClient(Request $request)
     {
-        $operaciones = Operation::where('client_id','=',$request->id)->paginate(10);
+        $operaciones = Operation::where('client_id','=',$request->id)->paginate();
         return new OperationCollection($operaciones);
+    }
+
+    public function getFileDownload(Request $request)
+    {
+        // dd(storage_path());
+        $operacion = Operation::find($request->id);    
+        if ($operacion->document != '0'){
+            // Storage::disk('public')->getDriver()->getAdapter()->applyPathPrefix($operacion->document);
+            return Storage::download($operacion->document);            
+        } else {
+            return response()->json(['mensaje' => 'No hay archivo'], 404);
+        }
     }
 
     public function operationFilter($fecha1,$fecha2,$status)

@@ -61,6 +61,7 @@ use App\Http\Controllers\User;
     Route::get('operaciones/{id}', [OperationController::class, 'operationbyclient']);
     Route::get('operacionesfilter/{fec1}/{fec2}/{status}', [OperationController::class, 'operationfilter']);
     Route::get('witgets', [OperationController::class, 'witgets']);
+    Route::get('download/{id}', [OperationController::class, 'getfiledownload']);
 /*
 |--------------------------------------------------------------------------
 | API Routes Tipo de operaciones

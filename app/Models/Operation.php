@@ -14,7 +14,6 @@ class Operation extends Model
         'office_id',
         'custom_id',
         'document',
-        'document_path',
         'file',
         'bill',
         'merchandise_description',
