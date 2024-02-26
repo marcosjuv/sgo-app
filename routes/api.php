@@ -54,6 +54,7 @@ use App\Http\Controllers\User;
 |--------------------------------------------------------------------------
 */
     Route::get('operaciones', [OperationController::class, 'index']);
+    Route::get('operationall', [OperationController::class, 'getall']);
     Route::post('operacion', [OperationController::class, 'store']);
     Route::get('operation/{id}', [OperationController::class, 'getoperationbyid']);
     Route::get('operationdata/{id}', [OperationController::class, 'getdataoperation']);
@@ -88,7 +89,6 @@ use App\Http\Controllers\User;
 |--------------------------------------------------------------------------
 */
     Route::resource('clients', ClientController::class)->names('index');
-    // Route::get('clients', [ClientController::class, 'index']);
     Route::put('clients/{id}', [ClientController::class, 'update']);
     Route::delete('clients/{id}', [ClientController::class, 'destroy']);
     Route::get('getid/{id}', [ClientController::class, 'getclientbyid']);

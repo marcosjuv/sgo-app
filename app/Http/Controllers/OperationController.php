@@ -26,6 +26,12 @@ class OperationController extends Controller
         return new OperationCollection($operaciones);
     }
 
+    public function getAll(Request $request)
+    {
+        $operaciones = Operation::all();     
+        return new OperationCollection($operaciones);
+    }
+
     public function show(Operation $operaciones)
     {
         $operaciones = Operation::paginate();        
@@ -166,10 +172,8 @@ class OperationController extends Controller
 
     public function getFileDownload(Request $request)
     {
-        // dd(storage_path());
         $operacion = Operation::find($request->id);    
         if ($operacion->document != '0'){
-            // Storage::disk('public')->getDriver()->getAdapter()->applyPathPrefix($operacion->document);
             return Storage::download($operacion->document);            
         } else {
             return response()->json(['mensaje' => 'No hay archivo'], 404);
