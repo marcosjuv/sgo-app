@@ -32,11 +32,12 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $rol = new RoleResource(Role::create($request->all()));
+        $rol = Role::create(['name' => $request->name]);
+        // $rol = new RoleResource(Role::create($request->all()));
         if ($rol) {
             return response()->json(['mensaje' => 'Rol creado']);
         } else {
-            return response()->json(['mensaje' => 'Fallo el registro']);
+            return response()->json(['mensaje' => 'Fallo el registro'],401);
         }
     }
 
@@ -81,4 +82,6 @@ class RoleController extends Controller
         $rol->delete();
         return response()->json(['message' => 'Rol deleted successfully'], 200);
     }
+
+    
 }

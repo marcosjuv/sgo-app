@@ -48,6 +48,7 @@ use App\Http\Controllers\User;
     Route::post('createuser', [UserController::class, 'store']);
     Route::get('user/{id}', [UserController::class, 'getbyid']);
     Route::put('user/{id}', [UserController::class, 'update']);
+    Route::post('userol', [UserController::class, 'UserRol']);
 /*
 |--------------------------------------------------------------------------
 | API Routes operaciones
@@ -147,4 +148,4 @@ use App\Http\Controllers\User;
 | API Routes reporte ejecutivo
 |--------------------------------------------------------------------------
 */
-    Route::get('operations/export/', [OperationController::class, 'export']);
+    // Route::get('operations/export/', [OperationController::class, 'export']);

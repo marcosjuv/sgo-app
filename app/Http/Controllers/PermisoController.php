@@ -30,11 +30,12 @@ class PermisoController extends Controller
      */
     public function store(Request $request)
     {
-        $permiso = new PermisoResource(Permission::create($request->all()));
+        $permiso = Permission::create(['name' => $request->name]);
+        // $permiso = new PermisoResource(Permission::create($request->all()));
         if ($permiso) {
-            return response()->json(['mensaje' => 'Permiso creado']);
+            return response()->json(['mensaje' => 'Permiso creado'],200);
         } else {
-            return response()->json(['mensaje' => 'Fallo el registro']);
+            return response()->json(['mensaje' => 'Fallo el registro'],401);
         }
     }
 

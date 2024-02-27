@@ -12,21 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class LoginController extends Controller
 {
-    public function login(Request $request) {
-
-        // $credentials = $request->validate([
-        //     'email' => ['required', 'email'],
-        //     'password' => ['required'],
-        // ]);
- 
-        // if (Auth::attempt($credentials)) {
-        //     $user = Auth::user();
-        //     $token = $user->createToken('token')->plainTextToken;
-        //     $cookie = cookie('cookie_token', $token, 60 * 24);
-        //     return response(["token"=>$token], Response::HTTP_OK)->withoutCookie($cookie);
-        // } else {
-        //     return response(["message"=> "Credenciales inválidas"],Response::HTTP_UNAUTHORIZED);
-        // }
+    public function login(Request $request) {        
 
         $user = User::where('email', request('email'))->first();
 
@@ -41,11 +27,6 @@ class LoginController extends Controller
 
         return response()->json(['mensaje' => 'Credenciales invalidas'], 401);
     }
-
-    // public function getToken()
-    // {
-    //     $token = 
-    // }
 
     public function logout() {
         $cookie = Cookie::forget('cookie_token');

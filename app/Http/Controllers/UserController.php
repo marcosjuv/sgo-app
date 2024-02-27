@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use \Spatie\Permission\Models\Role;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
-    function index(Request $request) {
+    public function index(Request $request) {
         return User::paginate();
     }
 
@@ -19,15 +20,16 @@ class UserController extends Controller
         if ($resp) {
             return response()->json(['mensaje' => 'Correo ya esta registrado'], 403);
         }else {
-            $resp = new UserResource(User::create($request->all()));
+            $resp = User::create($request->all());
+            $resp->assignRole($request->roles);
             return response()->json(['mensaje' => 'Usuario creado'], 201);
         }
     }
 
     public function getById(Request $request, $id)
     {
-        // $user = User::find($id);
-        $user = new UserResource(User::find($id));
+        $user = User::find($id);
+        $user->hasExactRoles(Role::all());
         return response()->json($user);
     }
 
@@ -40,9 +42,10 @@ class UserController extends Controller
             $user->password = $request->password;
             $user->active = $request->active;
             $user->update($request->all());
+            $user->assignRole($request->roles);
             return response()->json(['message' => 'Usuario updated successfully','data' => $user], 200);
         }else{
-            return response()->json(['message' => 'Data not found'], 404);
+            return response()->json(['message' => 'Data not found'], 401);
         }
     }
 }

@@ -22,7 +22,7 @@ class OperationController extends Controller
      */
     public function index(Request $request)
     {
-        $operaciones = Operation::paginate();     
+        $operaciones = Operation::orderBy('id', 'desc')->paginate();     
         return new OperationCollection($operaciones);
     }
 
@@ -166,7 +166,7 @@ class OperationController extends Controller
 
     public function operationByClient(Request $request)
     {
-        $operaciones = Operation::where('client_id','=',$request->id)->paginate();
+        $operaciones = Operation::where('client_id','=',$request->id)->orderBy('id', 'desc')->paginate();
         return new OperationCollection($operaciones);
     }
 
