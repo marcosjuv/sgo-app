@@ -29,7 +29,7 @@ class UserController extends Controller
     public function getById(Request $request, $id)
     {
         $user = User::find($id);
-        $user->hasExactRoles(Role::all());
+        $role = $user->getRoleNames();
         return response()->json($user);
     }
 
@@ -47,5 +47,10 @@ class UserController extends Controller
         }else{
             return response()->json(['message' => 'Data not found'], 401);
         }
+    }
+
+    public function checkRol(User $user)
+    {
+        return $user->getRoleNames();
     }
 }

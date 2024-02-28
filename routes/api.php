@@ -37,7 +37,6 @@ use App\Http\Controllers\User;
 */
     Route::post('login', [LoginController::class, 'login']);
     Route::post('logout', [LoginController::class, 'logout']);
-    // Route::post('logout', [LoginController::class, 'logout']);
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +48,7 @@ use App\Http\Controllers\User;
     Route::get('user/{id}', [UserController::class, 'getbyid']);
     Route::put('user/{id}', [UserController::class, 'update']);
     Route::post('userol', [UserController::class, 'UserRol']);
+    Route::get('check/{user}', [UserController::class, 'checkrol']);
 /*
 |--------------------------------------------------------------------------
 | API Routes operaciones
