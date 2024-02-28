@@ -33,7 +33,6 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $rol = Role::create(['name' => $request->name]);
-        // $rol = new RoleResource(Role::create($request->all()));
         if ($rol) {
             return response()->json(['mensaje' => 'Rol creado']);
         } else {
