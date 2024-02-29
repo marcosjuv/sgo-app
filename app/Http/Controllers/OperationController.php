@@ -112,14 +112,27 @@ class OperationController extends Controller
         }
     }
 
+    public function upLoadFile(Request $request, $id)
+    {
+        $operacion = Operation::find($id);
+        if ($request->file('document') == null) {
+            return $file_path = null;
+        } else {
+            $file = $request->file('document');
+            $extension = $file->getClientOriginalExtension();            
+            $folder = $operacion->client_id;
+            $name = $operacion->file;
+            $file_path = $file_path = $file->storeAs('public/'.$folder, $name.DIRECTORY_SEPARATOR.date('Y-m-d').'.'.$extension);
+            // dd($file_path);
+            $operacion->document = $file_path;
+            $operacion->save();
+            return response()->json($operacion->document);
+        }    
+    }
+
     public function Update(Request $request, $id)
     {
         $operacion = Operation::find($id);
-        $file = $request->file('document');
-        $extension = $file->getClientOriginalExtension();
-        $folder = $operacion->client_id;
-        $name = $operacion->file;
-        $file_path = $file->storeAs('public/'.$folder, $name.DIRECTORY_SEPARATOR.date('Y-m-d').'.'.$extension);
 
         if ($operacion) {
 
@@ -127,7 +140,7 @@ class OperationController extends Controller
             $operacion->operation_type_id = $request->operation_type_id;
             $operacion->office_id = $request->office_id;
             $operacion->custom_id = $request->custom_id;
-            $operacion->document = $file_path;
+            // $operacion->document = $file_path;
             $operacion->file = $request->file;
             $operacion->bill = $request->bill;
             $operacion->merchandise_description = $request->merchandise_description;
@@ -157,7 +170,7 @@ class OperationController extends Controller
             $operacion->process_color = $request->process_color;
             $operacion->status = $request->status;
             $operacion->comment = $request->comment;
-            $operacion->save();
+            $operacion->update();
             return response()->json(['message' => 'Operacion actualizada','data' => $operacion], 200);
         }else{
             return response()->json(['message' => 'Data not found'], 404);
