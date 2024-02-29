@@ -49,8 +49,8 @@ class UserController extends Controller
         }
     }
 
-    public function checkRol(User $user)
+    public function renewToken(User $user)
     {
-        return $user->getRoleNames();
+        
     }
 }
