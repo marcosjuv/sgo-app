@@ -49,6 +49,7 @@ use App\Http\Controllers\User;
     Route::put('user/{id}', [UserController::class, 'update']);
     Route::post('userol', [UserController::class, 'UserRol']);
     Route::get('check/{user}', [UserController::class, 'checkrol']);
+    Route::get('token/{id}', [UserController::class, 'renewtoken']);
 /*
 |--------------------------------------------------------------------------
 | API Routes operaciones

@@ -7,6 +7,7 @@ use App\Models\User;
 use \Spatie\Permission\Models\Role;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -49,8 +50,15 @@ class UserController extends Controller
         }
     }
 
-    public function renewToken(User $user)
+    public function renewToken(User $user, $id)
     {
-        
+        $user = DB::table('personal_access_tokens AS pat')
+        ->select('pat.id','token')
+        ->join('users','users.id','=','pat.tokenable_id')
+        ->where('users.id', '=', $id)
+        ->orderBy('id','desc')
+        ->limit(1)
+        ->get();
+        return response()->json(['data' => $user]);
     }
 }

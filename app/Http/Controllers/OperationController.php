@@ -126,7 +126,8 @@ class OperationController extends Controller
             // dd($file_path);
             $operacion->document = $file_path;
             $operacion->save();
-            return response()->json($operacion->document);
+            return response()->json($operacion);
+            // return response()->json($operacion->document);
         }    
     }
 
