@@ -122,13 +122,11 @@ class OperationController extends Controller
             $extension = $file->getClientOriginalExtension();            
             $folder = $operacion->client_id;
             $name = $operacion->file;
-            $file_path = $file_path = $file->storeAs('public/'.$folder, $name.DIRECTORY_SEPARATOR.date('Y-m-d').'.'.$extension);
-            // dd($file_path);
+            $file_path = $file->storeAs('public/'.$folder, $name.DIRECTORY_SEPARATOR.date('Y-m-d').'.'.$extension);
             $operacion->document = $file_path;
             $operacion->save();
-            return response()->json($operacion);
-            // return response()->json($operacion->document);
-        }    
+            return response()->json($file_path);
+        }
     }
 
     public function Update(Request $request, $id)

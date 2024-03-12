@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Schema::create('cities', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->foreignId('state_id');
-        //     $table->string('name');
-        //     $table->timestamps();
-        //     $table->foreign('state_id')->references('id')->on('states')->onUpdate('cascade')->onDelete('cascade')->constrained();
-        // });
+        Schema::create('cities', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('state_id');
+            $table->string('name');
+            $table->timestamps();
+            $table->foreign('state_id')->references('id')->on('states')->onUpdate('cascade')->onDelete('cascade')->constrained();
+        });
     }
 
     /**

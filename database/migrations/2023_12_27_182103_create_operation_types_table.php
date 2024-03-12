@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Schema::create('operation_types', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->string('name');
-        //     $table->boolean('active');
-        //     $table->timestamps();
-        // });
+        Schema::create('operation_types', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->boolean('active');
+            $table->timestamps();
+        });
     }
 
     /**
